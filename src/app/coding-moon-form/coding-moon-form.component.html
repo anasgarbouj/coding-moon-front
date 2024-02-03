@@ -1,0 +1,53 @@
+<div class="coding-moon-challenge">
+  <h1>CODING MOON CHALLENGE</h1>
+  <p>Once you've completed this step, you'll officially be part of Coding Moon Challenge community! Prepare for a journey filled with camaraderie, challenges, and, of course, a touch of wizardry. Let the magical coding commence!</p>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName" required>
+      <span class="placeholder" [class.hide]="firstName">Your First Name</span>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" required>
+      <span class="placeholder" [class.hide]="lastName">Your Last Name</span>
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
+      <span class="placeholder" [class.hide]="email">Your Email Address</span>
+      <div *ngIf="formSubmitted && !isValidEmail(email)" class="error-message" style="color: red;">Please enter a valid email address.</div>
+    </div>
+    <div class="form-group">
+      <input type="tel" class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+      <span class="placeholder" [class.hide]="phoneNumber">Your Phone Number</span>
+      <div *ngIf="formSubmitted && !isNumeric(phoneNumber)" class="error-message" style="color: red;">Please enter a valid phone number.</div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="university" name="university" required>
+      <span class="placeholder" [class.hide]="university">Your University</span>
+    </div>
+    <div class="form-group date-input">
+      <input type="date" class="form-control" [(ngModel)]="dateOfBirth" name="dateOfBirth" required>
+      <span class="date-icon">📅</span>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" [(ngModel)]="teamPassword" name="teamPassword" required>
+      <span class="placeholder" [class.hide]="teamPassword">Your Team Password</span>
+      <div *ngIf="formSubmitted && teamPassword.length < 6" class="error-message" style="color: red;">Password must be at least 6 characters long.</div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" [(ngModel)]="cteamPassword" name="cteamPassword" required>
+      <span class="placeholder" [class.hide]="cteamPassword">Confirm Your Team Password</span>
+      <div *ngIf="formSubmitted && teamPassword !== cteamPassword" class="error-message" style="color: red;">Passwords do not match.</div>
+    </div>
+    <div class="form-group">
+      <input type="file" class="form-control" (change)="onFileSelect($event)" name="cv">
+      <span class="placeholder" [class.hide]="cv">Upload Your CV</span>
+    </div>
+
+    <div *ngIf="formSubmitted && errorMessage" class="error-message" style="color: red;">
+      {{ errorMessage }}
+    </div>
+    <button type="submit" class="btn">Confirm</button>
+  </form>
+</div>

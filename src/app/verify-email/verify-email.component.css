@@ -1,0 +1,87 @@
+.email-verification {
+    width: 900px;
+    margin: auto;
+    background: url('/assets/bg2.png') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #000;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  
+  .email-verification h2 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .email-verification p {
+    color: #ccc;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    text-align: center;
+    outline: none;
+  }
+  
+  .form-control::placeholder {
+    color: #ddd;
+  }
+  
+  .placeholder {
+    color: #ddd;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+  }
+  
+  .btn:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .email-verification {
+      width: 90%;
+      padding: 50px 10px;
+    }
+  }
+  

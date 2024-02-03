@@ -1,0 +1,26 @@
+/* Resetting default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set the font-family for the entire document */
+  body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  /* Apply the full-page background image */
+  html, body {
+    height: 100%; /* Make sure html and body cover the full height of the viewport */
+    background: url('/assets/wallpaper.jpg') no-repeat center center fixed;
+    background-size: cover;
+ 
+  }
+  app-root {
+    min-height: 100vh; /* This will cover the full viewport height */
+    display: block;
+  }
+  html, body, app-root {
+    overflow-x: hidden; /* Hide horizontal scrollbar if not needed */
+  }

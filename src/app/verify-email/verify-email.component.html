@@ -1,0 +1,13 @@
+<div class="email-verification">
+    <h2>Verify Your Email</h2>
+    <p>Please enter the verification code you received.</p>
+    <div class="form-group">
+        <input type="email" class="form-control" [(ngModel)]="email" placeholder="enter your email" required>
+      </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="verificationCode" placeholder="Verification Code" required>
+    </div>
+    <button class="btn" (click)="verifyCode()">Verify</button>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </div>
+  

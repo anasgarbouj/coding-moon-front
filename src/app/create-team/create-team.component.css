@@ -1,0 +1,218 @@
+
+.coding-moon-challenge {
+    width: 900px;
+    margin: 50px auto;
+    background: url('/assets/bg2.png') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #000;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .date-input {
+    position: relative;
+  }
+  
+  .date-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .coding-moon-challenge h1 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .coding-moon-challenge p {
+    color: #ccc;
+    margin-bottom: 30px;
+  }
+  .team-logo-preview {
+    display: none; /* Change display to block to make sure it takes the full width if it's inline by default */
+    width: 150px; /* Set the width you desire */
+    height: 150px; /* Set the height you desire */
+    object-fit: cover; /* This will cover the area of the box, it can crop the image if it's not the same aspect ratio */
+    margin: 10px auto; /* Center the image horizontally if the parent is wider */
+    border-radius: 4px; /* Optional: for rounded corners */
+  }
+  .team-logo-preview2 {
+    display: block; /* Change display to block to make sure it takes the full width if it's inline by default */
+    width: 150px; /* Set the width you desire */
+    height: 150px; /* Set the height you desire */
+    object-fit: cover; /* This will cover the area of the box, it can crop the image if it's not the same aspect ratio */
+    margin: 10px auto; /* Center the image horizontally if the parent is wider */
+    border-radius: 4px; /* Optional: for rounded corners */
+  }
+  
+  
+  .form-group {
+    position: relative;
+    width: 100%; /* Full width of the parent container */
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    text-align: center;
+    outline: none;
+  }
+  
+  .form-control::placeholder {
+    color: #ddd; /* Light grey color, visible against the dark background */
+  }
+  
+  .placeholder {
+    color: #ddd;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center placeholder */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Allows clicks to pass through to the input element */
+  }
+  
+  /* Hide placeholder span when input is not empty or is focused */
+  .form-control:not(:placeholder-shown) + .placeholder,
+  .form-control:focus + .placeholder {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -60%); /* Move up a bit when disappearing */
+  }
+  
+  
+.file-upload {
+    margin: 20px 0; /* Adjust spacing around the upload area */
+  }
+  
+  .upload-icon {
+    display: inline-block; /* Centers the label text and icon */
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* Adds a border similar to the input fields */
+    border-radius: 4px; /* Matches the border-radius of other elements */
+    color: #fff; /* Text color */
+    font-weight: bold; /* Makes the text bold */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .upload-icon img {
+    width: 24px; /* Set a fixed width for the icon */
+    height: 24px; /* Set a fixed height for the icon */
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+    margin-right: 8px; /* Spacing between the icon and the text */
+  }
+  
+  .upload-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
+    color: #000; /* Text color change on hover */
+  }
+  
+  .team-member-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .team-member-list li {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: left;
+  }
+  
+  
+  .team-member-list li button {
+    float: right;
+    background: none;
+    border: none;
+    color: #f55;
+    cursor: pointer;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .coding-moon-challenge {
+      width: 90%;
+      padding: 50px 10px;
+    }
+  }
+  .button-group {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Creates space between the buttons */
+  }
+  
+  .btn {
+    width: auto; /* Override any previous full-width styling */
+    padding: 10px 20px; /* Adjust padding as needed */
+    /* Other existing styles remain unchanged */
+  }
+  
+  .delete-squad-btn {
+    background-color: red; 
+    color: white;
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .button-group {
+      flex-direction: column; /* Stack buttons vertically on small screens */
+      width: 100%; /* Take full width of the container */
+    }
+  
+    .btn {
+      width: 100%; /* Full width for better mobile usability */
+    }
+  }
+  .icon-button {
+    background: none;
+    border: none;
+    color: #f55; /* Adjust the color to fit your design */
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-button i {
+    font-size: 20px; /* Adjust the size as needed */
+    transition: color 0.3s ease;
+  }
+  
+  .icon-button:hover i {
+    color: #ff0000; /* Change color on hover */
+  }
+  

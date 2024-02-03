@@ -1,0 +1,57 @@
+<div class="coding-moon-challenge">
+    <h1>CODING MOON CHALLENGE</h1>
+    <p>CREATE YOUR TEAM</p>    
+  
+    <!-- Team Name Input -->
+    <div class="error-message" *ngIf="confirmTeamErrorMessage" style="color: red;">{{ confirmTeamErrorMessage }}</div>
+
+
+    <div class="form-group">
+      <input type="text" class="form-control team-name-input" [(ngModel)]="TeamName" name="TeamName" placeholder="Your Team Name"  required>
+
+    </div>
+  
+    <!-- Team Logo Upload -->
+    <div class="form-group file-upload">
+      <label for="teamLogoUpload" class="upload-icon">
+        <img src="/assets/image 19.png" alt="Upload">  {{ isTeamNameDisabled ? 'Update Your Team Logo' : 'Upload Your Team Logo' }}
+      
+      </label>
+      <input type="file" id="teamLogoUpload" (change)="onFileSelect($event)" hidden>
+      <img id="teamLogoPreview" src="" alt="Team Logo Preview" class="team-logo-preview" hidden>
+      <!-- Updated Team Logo Preview -->
+<!-- Updated Team Logo Preview -->
+<!-- Team Logo Preview -->
+<!-- Team Logo Preview -->
+<img *ngIf="teamLogoUrlSafe" [src]="teamLogoUrlSafe" class="team-logo-preview2" alt="Team Logo">
+
+    </div>
+  
+    <!-- Team Members List -->
+    <div class="team-members-list">
+      <h2 style="color: #fff;">Team Members(max=5):</h2>
+      <ul *ngIf="teamMembers.length > 0">
+        <li *ngFor="let member of teamMembers" style="color: #fff;">
+          {{ member.firstName }} {{ member.lastName }}
+          <button (click)="removeTeamMember(member)" class="icon-button">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          
+        </li>
+      </ul>
+    </div>
+  
+    
+    
+<!-- Confirm Team Button or Save Changes Button -->
+<div class="button-group">
+  <button type="button" class="btn confirm-team-btn" (click)="confirmTeamOrSaveChanges()">
+    {{ isTeamNameDisabled ? 'Save Changes' : 'Confirm' }}
+  </button>
+  <button type="button" class="btn add-team-member-btn" (click)="addmember()">Add team members</button>
+  <button type="button" class="btn delete-squad-btn" (click)="deleteSquad()" *ngIf="isTeamNameDisabled">Delete Squad</button>
+</div>
+
+    
+  </div>
+  

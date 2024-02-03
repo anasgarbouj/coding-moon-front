@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ----------------RemixIcon------------------ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.min.css">
+
+    <!-- ----------------CSS------------------ -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- ------------------------bootstrap-------------------------------- -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <title>cmc</title>
+</head>
+<body>
+    
+    <!-- ------------------------HEADER-------------------------------- -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo"><img src="assets/images/logos/CMC.png" alt=""></a>
+            <div class="nav_menu_action">
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#Home" class="nav__link">Home</a>
+                        </li>
+    
+                        <li class="nav__item">
+                            <a href="#AboutUs" class="nav__link">About us</a>
+                        </li>
+                        
+                        <li class="nav__item">
+                            <a href="#JoinUs" class="nav__link">Our Event</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#agents" class="nav__link">Agent</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#sponsors" class="nav__link">Sponsors</a>
+                        </li>
+                                                
+                    </ul>
+                    <!-- close button -->
+                    <div class="nav__close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+                <div class="nav__actions">
+                    <!-- Toggle button -->
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-menu-line"></i>
+                    </div>
+                    <div class="btns-container">
+                        <!-- Conditional rendering based on user login status -->
+                        <div *ngIf="!isLoggedIn()" class="create__container" onclick="redirectToCreateTeam()">
+                            Sign Up
+                        </div>
+                        <div *ngIf="isLoggedIn()" class="create__container" onclick="redirectToManage()" >
+                            Manage Team
+                        </div>
+                    
+                        <!-- Conditional rendering based on user login status -->
+                        <div *ngIf="!isLoggedIn()" class="login__container" onclick="redirectToSignIn()">
+                            Sign In
+                        </div>
+                        <div *ngIf="isLoggedIn()" class="login__container" (click)="toggleSelectOptions()">
+                            <span>Welcome {{user.firstname}}</span>
+                            <span class="dropdown-arrow" >↓</span>
+                            <div #dropdownMenu class="dropdown-content" [hidden]="!showOptions">
+                                <div (click)="handleUserOption('logout')">Logout</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- ==========================Home section========================== -->
+    <section class="home" id="Home">
+        <div class="content">
+            <h3>Coding Moon Challenge</h3>
+            <p>Craft digital spells- where tech and wizardry compete for greatness</p>
+            <h3>17/18 February in EPI Sousse</h3>
+        </div>
+    </section>
+    <!-- ==========================compteur section========================== -->
+    <div class="compteur">
+            <div class="container-item">
+                <div class="item" data-target="2">0</div>
+                <p>Days</p>
+            </div>
+            <div class="container-item">
+                <div class="item" data-target="350">0</div>
+                <p>Participant</p>
+            </div>
+            <div class="container-item">
+                <div class="item" data-target="10">0</div>
+                <p>Workshops</p>
+            </div>
+    </div>
+
+    <!-- ==============================About us section ============================ -->
+
+    <section class="aboutUs" id="AboutUs">
+        <div class="content">
+            <h3>Biggest Event</h3>
+            <div class="heading">About Our Event</div>
+            <p>Embark on a journey with EPI MTC Club – where professionalism meets innovation. 
+                 Immerse yourself in our Event Coding Moon world with workshops, hackathons,
+                  and testimonials. Now, meet MTC: Microsoft Technology Club, a hub for honing skills.
+                   From dynamic hackathons to enlightening podcasts, we push continuous learning. 
+                    Our focus spans diverse technologies, opening doors to limitless expertise. 
+                    Join EPI MTC Club – where excellence meets creativity, and possibilities are boundless!</p>
+            <a href="#" class="btn" onclick="redirectToCreateTeam()">Register Now</a>
+        </div>
+        <div class="img">
+            <img src="assets/images/aboutEvent.png" alt="">
+        </div>
+    </section>
+
+   <!-- =================================== join us ======================= -->
+
+    <section class="joinUs" id="JoinUs">
+        <div class="img">
+            <img src="assets/images/image3.png" alt="">
+        </div>
+        <div class="content">
+            <h3>Unleash Your Power</h3>
+            <div class="heading">Why Join us?</div>
+            <p>Ditch the textbooks and spreadsheets Coding Moon promises a weekend of brain-bending challenges,
+                 dazzling solutions, and epic connections. Hackathon warriors, prepare for code battles that'll
+                  ignite your passion. Curious observers? Our tech bazaar brims with knowledge, secret skills,
+                   and the perfect network to turbocharge your career. Beginner or veteran, this event's got 
+                   the pixels to keep you hooked. So, grab your A-game (and snacks!) and join us for
+                    unforgettable challenges, exceptional experiences, and the tech tribe you've been
+                     searching for.</p>
+            <a href="#" class="btn" onclick="redirectToCreateTeam()">Register Now</a>
+        </div>
+        
+    </section>
+
+    <!-- ===============================compteur section ================================= -->
+    <div id="countdown" class="countdown">
+        <div class="digits_container">
+            <div class="row">
+                <div class="digit__days" id="digit__days"></div>
+                <p>days</p>
+            </div>
+            <div class="row">
+                <div class="digit__hours" id="digit__hours"></div>
+                <p>hours</p>
+            </div>
+            <div class="row">
+                <div class="digit__minutes" id="digit__minutes"></div>
+                <p>minutes</p>
+            </div>
+            <div class="row">
+                <div class="digit__seconds" id="digit__seconds"></div>
+                <p>seconds</p>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- ============------------------------schedule event section-------------------------------- -->
+    <section class="scheduleEvent" id="scheduleEvent">
+        <div class="content">
+            <h3>Our Schedule</h3>
+            <div class="heading">Schedule Event</div>
+            <p>Get ready for an epic 24 hours of non-stop excitement at Coding Moon Challenge! We've got an awesome 
+                lineup planned for you, including mind-blowing workshops to fuel your creativity, coffee breaks to keep 
+                those brilliant ideas flowing, a dinner feast to recharge your energy, and a hearty breakfast to kickstart
+                 the day. And of course, the highlight of the night – the big reveal of the challenge! <br /> <br/>
+
+                So, gear up, get excited, and let's make this hackathon an unforgettable adventure! See you there!</p>
+            <div class="date">
+                <i class="ri-calendar-line"></i> 17/18 February 2024
+            </div>
+            <div class="location">
+                <i class="ri-map-pin-line"></i> EPI Sousse
+            </div>
+        </div>
+        <div class="planning___container">
+            <div class="buttons__container">
+                <div class="button__container"> 
+                    <button onclick="showTable(1)" class="btnday btn-active" id="btnday1">Day 1</button>
+                     <div class="ligne ligne-active" id="ligne1"></div>
+                </div> 
+                <div class="button__container"> 
+                    <button onclick="showTable(2)" class="btnday btn-inactive" id="btnday2">Day 2</button>
+                    <div class="ligne ligne-inactive" id="ligne2"></div> 
+                </div> 
+            </div>
+            
+
+            <div id="table1" class="table-container active">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-5" >09h00-10h00</td>
+                            <td class="col-md-10">Check-in</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">10h00-10h45</td>
+                            <td class="col-md-10">Welcoming</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">10h45-11h00</td>
+                            <td class="col-md-10">mini coffee break near workshop classrooms</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">11h00-13h00</td>
+                            <td class="col-md-10">workshops</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">13h00-14h00</td>
+                            <td class="col-md-10">lunch</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">14h00-16h00</td>
+                            <td class="col-md-10">workshops</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">16h00-16h15</td>
+                            <td class="col-md-10">coffee break</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">16h30-18h00</td>
+                            <td class="col-md-10">conference</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">18h00-19h00</td>
+                            <td class="col-md-10">entertainement</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">19h00</td>
+                            <td class="col-md-10">dinner</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">20h00</td>
+                            <td class="col-md-10">challenge</td>
+                        </tr>
+                        </tbody>
+                </table>
+            
+            </div>
+
+            <div id="table2" class="table-container">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-5">04h00</td>
+                            <td class="col-md-10">coffee break</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">08h00</td>
+                            <td class="col-md-10">end of challenge</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">08h00-08h30</td>
+                            <td class="col-md-10">breakfast</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-5">13h00</td>
+                            <td class="col-md-10">winner announcement</td>
+                        </tr>
+                        </tbody>
+                  </table>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- ==============================================organizers Section================================================== -->
+
+    <section class="organizers">
+        <h3>Our Heroes</h3>
+        <div class="heading">Organizing Team</div>
+        <div class="clubs">
+            <div class="club">
+                <div class="image">
+                    <img src="assets/images/logos/MTCepi.png" alt="">
+                </div>
+                <div class="club_name">EPI MICROSOFT CLUB</div>
+            </div>
+            <div class="club">
+                <div class="image">
+                    <img src="assets/images/logos/MICisima.png" alt="">
+                </div>
+                <div class="club_name">Microsoft ISIMa Club </div>
+            </div>
+            <div class="club">
+                <div class="image">
+                    <img src="assets/images/logos/mtcfmsf.png" alt="">
+                </div>
+                <div class="club_name">Microsoft Tech Club FMSF</div>
+            </div>
+            <div class="club">
+                <div class="image">
+                    <img src="assets/images/logos/MTCisims.png" alt="">
+                </div>
+                <div class="club_name">Microsoft Tech Club ISIM-Sfax</div>
+            </div>
+            <div class="club">
+                <div class="image">
+                    <img src="assets/images/logos/MTCenis.png" alt="">
+                </div>
+                <div class="club_name">Microsoft Tech Club ENIS</div>
+            </div>
+        </div>
+    </section>
+<!-- ///////////////////////////////////////////agents section////////////////////////////////////////////////////////// -->
+
+    <section class="agents" id="agents">
+      
+        <div class="heading">Our Payments Agents</div>
+        <div class="agents_container">
+            <div class="agent">
+                <div class="image">
+                    <img src="assets\agent\File_000.png" alt="">
+                </div>
+                <h3>MIC ISIMa</h3>
+          <p>NourElhouda Youssef</p>
+          <div class="tel"><i class="ri-phone-line"></i> 
+            <p>92 776 267</p>
+          </div>
+          <div class="ligneHor"></div>
+          <a href="https://www.facebook.com/profile.php?id=100009765607155" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
+            </div>
+            <div class="agent">
+                <div class="image">
+                    <img src="assets/agent/eya.jpg" alt="">
+                </div>
+                <h3>MTC ISIMS</h3>
+          <p>Eya Jaoua</p>
+          <div class="tel"><i class="ri-phone-line"></i> 
+            <p>20 175 979</p>
+          </div>
+          <div class="ligneHor"></div>
+          <a href="https://www.facebook.com/eya.jaoua.2004" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
+            </div>
+            <div class="agent">
+                <div class="image">
+                    <img src="assets/agent/zeineb.jpg" alt="">
+                </div>
+                <h3>MTC ENIS</h3>
+          <p>Zeineb Sassi</p>
+          <div class="tel"><i class="ri-phone-line"></i> 
+            <p>50 895 181</p>
+          </div>
+          <div class="ligneHor"></div>
+          <a href="https://www.facebook.com/zeineb.sassi.2001" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
+            </div>
+           
+        </div>
+    </section>
+    <!-- /////////////////////////sponsors section /////////////////////////////////////////////// -->
+
+    <section class="sponsors" id="sponsors">
+        <h3>Thank you</h3>
+        <div class="heading">Our Sponsors</div>
+        <div class="wrapper">
+            <i id="left" class="ri-arrow-left-s-line"></i>
+            <div class="carousel">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+                <img src="assets/images/sponsors/image 10.png" alt="img" draggable="false">
+            </div>
+            <i id="right" class="ri-arrow-right-s-line"></i>
+        </div>
+    </section>
+
+  <!-- =======================================footer======================================================     -->
+
+    <div class="footer">
+       <div class="heading">
+          <h2>Coding Moon Challenge</h2>
+        </div>
+        <div class="content">
+             
+          <div class="links">
+            <h4>Quick links</h4>
+            <p><a href="#Home">Home</a></p>
+            <p><a href="#AboutUs">About Us</a></p>
+            <p><a href="#JoinUs">Our Event</a></p>
+            <p><a href="#agents">Agent</a></p>
+            <p><a href="#sponsors">Sponsors</a></p>
+          </div>
+          <div class="social-media">
+            <h4>Social</h4>
+            <p>
+              <a href="https://www.facebook.com/CodingMoonChallengeV4"
+                ><i class="fab fa-facebook"></i> Facebook</a
+              >
+            </p> 
+            <p>
+              <a href="https://www.instagram.com/codingmoon_challenge/"
+                ><i class="fab fa-instagram"></i> Instagram</a
+              >
+            </p>
+          </div>
+          
+          <div class="details">
+            <h4 class="address">Address</h4>
+            <p>
+                EPI School <br/>
+                Rte ceinture, Sousse
+            </p>
+            <div class="map-wrapper">
+                <iframe class="googlemap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3234.722133993668!2d10.585815674644858!3d35.831292621718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd8b2406127037%3A0xb17f2e335103dd1b!2sEPI%20School!5e0!3m2!1sfr!2stn!4v1706812784338!5m2!1sfr!2stn"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          
+            </div>
+            
+          </div>
+        </div>
+        <footer>
+          <div class="ligneHor"></div>
+          © 2024 CMC
+        </footer>
+      </div>
+    <!-- ------------------------MAIN JS-------------------------------- -->
+    <script src="assets/js/main.js"></script>
+    <!-- ------------------------bootstrap-------------------------------- -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

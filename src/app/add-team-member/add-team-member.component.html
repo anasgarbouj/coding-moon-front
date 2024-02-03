@@ -1,0 +1,78 @@
+<div class="coding-moon-challenge">
+  <h1>CODING MOON CHALLENGE</h1>
+  <p>Manage YOUR TEAM</p>
+
+  <button type="button" class="btn add-member-btn" (click)="toggleTeamMemberForm()">+ Add Team Member</button>
+
+  <!-- Team Member Form -->
+  <div class="team-member-form" *ngIf="showTeamMemberForm">
+    <form #teamMemberForm="ngForm">
+      <!-- First Name -->
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="newMember.firstname" name="firstName" placeholder="Your First Name" required #firstName="ngModel">
+        <div *ngIf="firstName.invalid && firstName.touched" class="error-message">
+          First name is required.
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="newMember.lastname" name="lastName" placeholder="Your Last Name" required #lastName="ngModel">
+        <div *ngIf="lastName.invalid && lastName.touched" class="error-message">
+          Last name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="email" class="form-control" [(ngModel)]="newMember.email" name="email" placeholder="Your Email Address" required #email="ngModel">
+        <div *ngIf="email.invalid && email.touched" class="error-message">
+          A valid email is required.
+        </div>
+      </div>
+      
+      <!-- Phone Number -->
+      <div class="form-group">
+        <input type="tel" class="form-control" [(ngModel)]="newMember.phone" name="phoneNumber" placeholder="Your Phone Number" required 
+               pattern="^[0-9]{8}$" #phoneNumber="ngModel">
+        <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error-message">
+          Phone number must be exactly 8 digits.
+        </div>
+      </div>
+
+      <!-- University -->
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="newMember.university" placeholder="Your University" name="university" required #university="ngModel">
+        <div *ngIf="university.invalid && university.touched" class="error-message">
+          University is required.
+        </div>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="form-group date-input">
+        <input type="date" class="form-control" [(ngModel)]="newMember.birth_date" name="dateOfBirth" required #dateOfBirth="ngModel">
+        <div *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="error-message">
+          Date of birth is required.
+        </div>
+        <span class="date-icon">📅</span>
+      </div>
+>
+    <!-- File Upload for CV -->
+<div class="form-group">
+  <input type="file" class="form-control" (change)="onFileSelect($event)" required>
+  <span class="placeholder">Upload CV</span>
+</div>
+
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error-message" style="color: red;">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Add and Close Buttons -->
+      <button type="button" class="btn add-btn" (click)="addTeamMember()" [disabled]="!teamMemberForm.valid">Add</button>
+     
+    </form>
+  </div>
+
+  
+</div>

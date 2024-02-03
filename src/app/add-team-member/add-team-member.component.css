@@ -1,0 +1,215 @@
+
+.coding-moon-challenge {
+    width: 900px;
+    margin: 50px auto;
+    background: url('/assets/bg2.png') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #000;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .date-input {
+    position: relative;
+  }
+  .add-member-btn {
+  background-color: #4CAF50; /* Green background */
+  color: #FFFFFF; /* White text */
+  font-size: 16px; /* Increased font size */
+  font-weight: bold; /* Bold font */
+  letter-spacing: 1px; /* Space between letters */
+  border: none; /* No border */
+  cursor: pointer;
+  border-radius: 25px; /* Rounded corners */
+  padding: 15px 30px; /* Larger padding */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  margin-top: 20px; /* Ensure some space above the button */
+}
+.add-btn {
+  background-color: #007bff; /* Bootstrap primary blue for consistency */
+  color: #ffffff; /* White text for contrast */
+  font-size: 14px; /* Appropriate font size for form buttons */
+  font-weight: 500; /* Medium font weight */
+  letter-spacing: 0.5px; /* Slight spacing for legibility */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Cursor indicates clickable */
+  border-radius: 20px; /* Rounded corners for modern look */
+  padding: 10px 25px; /* Padding for a larger click area */
+  transition: background-color 0.2s ease-in-out; /* Smooth background color transition */
+  display: inline-block; /* Ensures proper spacing and alignment */
+  margin-right: 10px; /* Spacing from potentially adjacent buttons */
+}
+
+.add-btn:hover, .add-btn:focus {
+  background-color: #0056b3; /* Darker blue on hover/focus for feedback */
+  color: #e8f5e9; /* Soft greenish-white text color on hover/focus */
+}
+
+.add-btn:disabled {
+  background-color: #cccccc; /* Grayed out when disabled */
+  color: #666666; /* Darker text for disabled state */
+  cursor: not-allowed; /* Indicates button is not clickable */
+}
+
+.add-member-btn:hover, .add-member-btn:focus {
+  background-color: #45a049; /* Slightly darker green on hover/focus */
+  color: #e8f5e9; /* Lighter text on hover/focus */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow for hover/focus */
+}
+
+/* Optional: Add an active state for when the button is clicked */
+.add-member-btn:active {
+  background-color: #3e8e41; /* Even darker green */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); /* Smaller shadow for a "pressed" effect */
+}
+
+  
+  .date-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .coding-moon-challenge h1 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .coding-moon-challenge p {
+    color: #ccc;
+    margin-bottom: 30px;
+  }
+  .team-logo-preview {
+    display: none; /* Change display to block to make sure it takes the full width if it's inline by default */
+    width: 150px; /* Set the width you desire */
+    height: 150px; /* Set the height you desire */
+    object-fit: cover; /* This will cover the area of the box, it can crop the image if it's not the same aspect ratio */
+    margin: 10px auto; /* Center the image horizontally if the parent is wider */
+    border-radius: 4px; /* Optional: for rounded corners */
+  }
+  
+  
+  .form-group {
+    position: relative;
+    width: 100%; /* Full width of the parent container */
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    text-align: center;
+    outline: none;
+  }
+  
+  .form-control::placeholder {
+    color: #ddd; /* Light grey color, visible against the dark background */
+  }
+  
+  .placeholder {
+    color: #ddd;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center placeholder */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Allows clicks to pass through to the input element */
+  }
+  
+  /* Hide placeholder span when input is not empty or is focused */
+  .form-control:not(:placeholder-shown) + .placeholder,
+  .form-control:focus + .placeholder {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -60%); /* Move up a bit when disappearing */
+  }
+  
+  
+.file-upload {
+    margin: 20px 0; /* Adjust spacing around the upload area */
+  }
+  
+  .upload-icon {
+    display: inline-block; /* Centers the label text and icon */
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* Adds a border similar to the input fields */
+    border-radius: 4px; /* Matches the border-radius of other elements */
+    color: #fff; /* Text color */
+    font-weight: bold; /* Makes the text bold */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .upload-icon img {
+    width: 24px; /* Set a fixed width for the icon */
+    height: 24px; /* Set a fixed height for the icon */
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+    margin-right: 8px; /* Spacing between the icon and the text */
+  }
+  
+  .upload-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
+    color: #000; /* Text color change on hover */
+  }
+  
+  .team-member-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .team-member-list li {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: left;
+  }
+  
+  
+  .team-member-list li button {
+    float: right;
+    background: none;
+    border: none;
+    color: #f55;
+    cursor: pointer;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .coding-moon-challenge {
+      width: 90%;
+      padding: 50px 10px;
+    }
+  }
+  
