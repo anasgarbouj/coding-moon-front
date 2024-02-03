@@ -29,7 +29,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.script = this.renderer.createElement('script');
-    this.script.src = 'assets/js/main.js'; // Path to your script file
+    this.script.src = '/assets/js/main.js'; // Path to your script file
     this.script.type = 'text/javascript';
     this.renderer.appendChild(this.el.nativeElement, this.script);
     this.getUserData();
