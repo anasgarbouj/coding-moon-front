@@ -6,11 +6,14 @@
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName" required>
       <span class="placeholder" [class.hide]="firstName">Your First Name</span>
+      <div *ngIf="formSubmitted && !isValidName(firstName)" class="error-message" style="color: red;">Please enter a valid first name.</div>
     </div>
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" required>
       <span class="placeholder" [class.hide]="lastName">Your Last Name</span>
+      <div *ngIf="formSubmitted && !isValidName(lastName)" class="error-message" style="color: red;">Please enter a valid last name.</div>
     </div>
+    
     <div class="form-group">
       <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
       <span class="placeholder" [class.hide]="email">Your Email Address</span>
@@ -27,7 +30,6 @@
     </div>
     <div class="form-group date-input">
       <input type="date" class="form-control" [(ngModel)]="dateOfBirth" name="dateOfBirth" required>
-      <span class="date-icon">📅</span>
     </div>
 
     <div class="form-group">
@@ -41,9 +43,18 @@
       <div *ngIf="formSubmitted && teamPassword !== cteamPassword" class="error-message" style="color: red;">Passwords do not match.</div>
     </div>
     <div class="form-group">
-      <input type="file" class="form-control" (change)="onFileSelect($event)" name="cv">
-      <span class="placeholder" [class.hide]="cv">Upload Your CV</span>
-    </div>
+<!-- Custom file upload button and hidden file input -->
+<div class="file-upload-wrapper">
+  <button type="button" id="custom-button" (click)="triggerFileInput()">Upload Your CV</button>
+  <input type="file" class="form-control" (change)="onFileSelect($event)" name="cv" id="file-upload" style="opacity: 0; position: absolute; left: 0; top: 0;">
+  <span *ngIf="selectedFileName" class="file-name" style="color:white;">{{ selectedFileName }}</span>
+</div>
+<div *ngIf="errorMessage" class="error-message" style="color: red;">
+  {{ errorMessage }}
+</div>
+</div>
+
+    
 
     <div *ngIf="formSubmitted && errorMessage" class="error-message" style="color: red;">
       {{ errorMessage }}

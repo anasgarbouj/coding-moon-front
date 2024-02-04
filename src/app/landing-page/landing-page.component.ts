@@ -60,7 +60,7 @@ toggleSelectOptions() {
 handleUserOption(option: string) {
   if (option === 'logout') {
       localStorage.removeItem('jwtToken'); // Remove the token
-      this.router.navigate(['/login']); // Navigate to login or home page
+      this.router.navigate(['/']); // Navigate to login or home page
   }
   if (option === 'manage'){
     this.router.navigate(['/manage-account'])

@@ -12,20 +12,20 @@
     </div>
   
     <!-- Team Logo Upload -->
-    <div class="form-group file-upload">
-      <label for="teamLogoUpload" class="upload-icon">
-        <img src="/assets/image 19.png" alt="Upload">  {{ isTeamNameDisabled ? 'Update Your Team Logo' : 'Upload Your Team Logo' }}
-      
-      </label>
-      <input type="file" id="teamLogoUpload" (change)="onFileSelect($event)" hidden>
-      <img id="teamLogoPreview" src="" alt="Team Logo Preview" class="team-logo-preview" hidden>
-      <!-- Updated Team Logo Preview -->
-<!-- Updated Team Logo Preview -->
-<!-- Team Logo Preview -->
-<!-- Team Logo Preview -->
-<img *ngIf="teamLogoUrlSafe" [src]="teamLogoUrlSafe" class="team-logo-preview2" alt="Team Logo">
+  <!-- Team Logo Upload -->
+<div class="form-group file-upload">
+  <label for="teamLogoUpload" class="upload-icon">
+    <img src="/assets/image 19.png" alt="Upload">  {{ isTeamNameDisabled ? 'Update Your Team Logo' : 'Upload Your Team Logo' }}
+  </label>
+  <input type="file" id="teamLogoUpload" (change)="onFileSelect($event)" hidden>
+  <!-- Display the error message if there is one -->
+  <div *ngIf="logoErrorMessage" class="error-message" style="color: red;">
+    {{ logoErrorMessage }}
+  </div>
+  <img id="teamLogoPreview" src="" alt="Team Logo Preview" class="team-logo-preview" hidden>
+  <img *ngIf="teamLogoUrlSafe" [src]="teamLogoUrlSafe" class="team-logo-preview2" alt="Team Logo">
+</div>
 
-    </div>
   
     <!-- Team Members List -->
     <div class="team-members-list">

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable , throwError} from 'rxjs';
 import { environment } from '../environments/environment';
 import { catchError, map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 interface LogoResponse {
   message: string;
 }
@@ -12,8 +14,38 @@ interface LogoResponse {
 export class UserService {
   private apiUrl = environment.apiUrl; 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {}
+  public isTokenExpired(): boolean {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return true;
+  
+    try {
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(token);
+      console.log("decode: ", decodedToken);
+      const exp = decodedToken.exp; // Get the expiration time from the token
+  
+      if (!exp) return false;
+  
+      return (Date.now() >= exp * 1000); // Compare the expiration time with the current time
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return true;
+    }
+  }
 
+  // Call this method to check if the user should be logged out
+  public checkTokenAndLogout(): void {
+    if (this.isTokenExpired()) {
+      // Token has expired
+      this.logout();
+    }
+  }
+  public logout(): void {
+    localStorage.removeItem('jwtToken');
+    this.router.navigate(['/s']); 
+ 
+  }
   // Helper method to get HTTP headers
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken'); 

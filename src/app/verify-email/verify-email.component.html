@@ -1,13 +1,14 @@
 <div class="email-verification">
-    <h2>Verify Your Email</h2>
-    <p>Please enter the verification code you received.</p>
-    <div class="form-group">
-        <input type="email" class="form-control" [(ngModel)]="email" placeholder="enter your email" required>
-      </div>
-    <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="verificationCode" placeholder="Verification Code" required>
-    </div>
-    <button class="btn" (click)="verifyCode()">Verify</button>
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <h2>Verify Your Email</h2>
+  <p>Please enter the verification code you received.</p>
+  <div class="form-group">
+      <input type="email" class="form-control" [(ngModel)]="email" placeholder="Enter your email" required>
   </div>
-  
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="verificationCode" placeholder="Verification Code" required>
+  </div>
+  <button class="btn" (click)="verifyCode()">Verify</button>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <!-- Added instructions for users who did not receive their verification code -->
+  <p>If you didn't receive your verification code after creating your account, you may need to create a new one. Please ensure your email address is entered correctly and check your email's spam or junk folder. If you continue to experience issues, <a href="/signup">create a new account</a> .</p>
+</div>

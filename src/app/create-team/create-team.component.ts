@@ -84,10 +84,28 @@ export class CreateTeamComponent implements OnInit {
     });
   }
   
-  onFileSelect(event: Event): void {
-    const eventTarget = event.target as HTMLInputElement;
-    if (eventTarget.files && eventTarget.files[0]) {
-      this.teamLogoFile = eventTarget.files[0];
+// Property to store the error message for the logo file
+logoErrorMessage: string = '';
+
+onFileSelect(event: Event): void {
+  const eventTarget = event.target as HTMLInputElement;
+  if (eventTarget.files && eventTarget.files[0]) {
+    const file = eventTarget.files[0];
+    const validFileTypes = [ 'image/jpg', 'image/jpeg'];
+
+    // Check if the file is an image and of PNG, JPG or JPEG type
+    if (!validFileTypes.includes(file.type)) {
+      this.logoErrorMessage = 'Please upload your logo as a JPEG or JPG file.';
+      this.teamLogoFile = null; // Reset the file
+      // Optionally, clear the preview image
+      const teamLogoPreview = document.getElementById('teamLogoPreview') as HTMLImageElement;
+      if (teamLogoPreview) {
+        teamLogoPreview.src = '';
+        teamLogoPreview.style.display = 'none';
+      }
+    } else {
+      this.logoErrorMessage = ''; // Clear any previous error message
+      this.teamLogoFile = file;
       // Preview the image
       const reader = new FileReader();
       reader.onload = (e: any) => {
@@ -100,6 +118,8 @@ export class CreateTeamComponent implements OnInit {
       reader.readAsDataURL(this.teamLogoFile);
     }
   }
+}
+
  
 
   removeTeamMember(member: TeamMember) {

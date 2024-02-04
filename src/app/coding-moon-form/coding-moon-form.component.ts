@@ -20,16 +20,40 @@ export class CodingMoonFormComponent implements OnInit {
   cv: File | null = null; // Change to File type
   errorMessage: string = '';
   formSubmitted: boolean = false; // Track if the form has been submitted
+  selectedFileName: string = '';
 
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {}
-  onFileSelect(event: Event): void {
-    const eventTarget = event.target as HTMLInputElement;
-    if (eventTarget.files && eventTarget.files[0]) {
-      this.cv= eventTarget.files[0];
+// Modify the onFileSelect method
+onFileSelect(event: Event): void {
+  const eventTarget = event.target as HTMLInputElement;
+  this.cv = null; // Reset the CV
+  this.selectedFileName = ''; // Reset the file name
+  this.errorMessage = ''; // Clear any previous error messages
+
+  if (eventTarget.files && eventTarget.files[0]) {
+    const file = eventTarget.files[0];
+
+    // Check if the file size exceeds 200KB (200 * 1024 bytes)
+    if (file.size > 200 * 1024) {
+      this.errorMessage = 'The CV must be less than 200KB.';
+      return;
     }
+
+    if (file.type !== 'application/pdf') {
+      this.errorMessage = 'Please upload your CV as a PDF file.';
+      return;
+    }
+
+    // If the file passes the size and type checks, proceed to set the file and file name
+    this.cv = file;
+    this.selectedFileName = file.name;
   }
+}
+
+
+  
   async onSubmit() {
     this.formSubmitted = true; // Set form as submitted
 
@@ -72,14 +96,15 @@ export class CodingMoonFormComponent implements OnInit {
       const registerResponse = await this.userService.signup(newUser).toPromise();
       // Assuming the backend returns some identifier or success message on registering the user
   
-      // If registration is successful and a CV is present, upload the CV
       if (this.cv) {
-        const cvUploadResponse = await this.userService.uploadFile2(this.cv,newUser.email).toPromise();
-        // Handle CV upload response if necessary
-      }else {
-        // Handle the case where CV is not selected
-        console.error("No file selected for upload.");
-        return;
+        try {
+          const cvUploadResponse = await this.userService.uploadFile2(this.cv, this.email).toPromise();
+          // Handle CV upload response if necessary
+        } catch (error) {
+          this.errorMessage = 'Failed to upload CV. Please try again.';
+          console.error(error);
+          return;
+        }
       }
   
       // Navigate to verify-email or handle successful registration as needed
@@ -102,4 +127,19 @@ export class CodingMoonFormComponent implements OnInit {
   isNumeric(str: string): boolean {
     return /^\d+$/.test(str);
   }
+  // In your CodingMoonFormComponent class
+
+// Helper function to check if a string contains only alphabetic characters
+isValidName(name: string): boolean {
+  return /^[A-Za-z ]+$/.test(name);
+}
+// In your component's TypeScript code
+
+// This method is used to trigger the hidden file input click event
+triggerFileInput() {
+  const fileInput = document.getElementById('file-upload') as HTMLInputElement;
+  fileInput.click();
+}
+
+
 }

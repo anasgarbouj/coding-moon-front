@@ -84,4 +84,12 @@
       padding: 50px 10px;
     }
   }
+  .email-verification a {
+    color: #82b1ff;
+    text-decoration: none;
+  }
+  
+  .email-verification a:hover {
+    text-decoration: underline;
+  }
   

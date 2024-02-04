@@ -12,6 +12,26 @@
   .date-input {
     position: relative;
   }
+  .file-upload-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  #custom-button {
+    /* Style your button as needed */
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  #file-upload {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+  
   
   .date-icon {
     position: absolute;
@@ -78,6 +98,23 @@
     cursor: pointer;
     margin-top: 30px;
   }
+  /* Add this new class for wrapping input elements */
+.input-wrapper {
+  display: flex;
+  justify-content: center; /* Center the input field */
+}
+
+.form-control {
+  width: 50%; /* Adjust this to control the input width itself */
+  padding: 10px 20px; /* Adjust padding as needed */
+  /* Other styles remain the same */
+}
+
+/* Adjust the width of the border-bottom to make lines thinner if needed */
+.form-control {
+  border-bottom: 1px solid #ccc; /* Keep this for the line under the input */
+}
+
   .btn:hover{
     background-color: #000;
     color: #fff;

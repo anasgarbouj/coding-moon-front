@@ -37,14 +37,39 @@ export class AddTeamMemberComponent implements OnInit {
   cv:string='';
   
   cvFile: File | null = null;
+  showTeamMemberForm2: boolean = false;
+  toggleButtonText: string = '+ Add Team Member';
 
+ 
+  toggleTeamMemberForm() {
+    this.showTeamMemberForm = !this.showTeamMemberForm;
+    this.toggleButtonText = this.showTeamMemberForm ? '- Add Team Member' : '+ Add Team Member';
+    
+  }
+  
   
   onFileSelect(event: Event): void {
     const eventTarget = event.target as HTMLInputElement;
     if (eventTarget.files && eventTarget.files[0]) {
-      this.cvFile = eventTarget.files[0];
+      const file = eventTarget.files[0];
+  
+      // Check if the file is a PDF
+      if (file.type !== 'application/pdf') {
+        this.errorMessage = 'Please upload your CV as a PDF file.';
+        return; // Exit the function if file is not a PDF
+      }
+  
+      // Check if the file size is less than or equal to 200 KB
+      if (file.size > 200 * 1024) {
+        this.errorMessage = 'The file size should not exceed 200 KB.';
+        return; // Exit the function if file exceeds size limit
+      }
+  
+      this.cvFile = file; // If checks pass, assign the file to cvFile
+      this.errorMessage = ''; // Clear any previous error messages
     }
   }
+  
  async addTeamMember() {
     if (this.cvFile) {
       try {
@@ -92,7 +117,5 @@ export class AddTeamMemberComponent implements OnInit {
     this.router.navigate(['/**']);
   }
 
-  toggleTeamMemberForm() {
-    this.showTeamMemberForm = !this.showTeamMemberForm;
-  }
+ 
 }

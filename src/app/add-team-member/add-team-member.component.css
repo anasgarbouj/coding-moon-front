@@ -46,6 +46,23 @@
   display: inline-block; /* Ensures proper spacing and alignment */
   margin-right: 10px; /* Spacing from potentially adjacent buttons */
 }
+.custom-file-upload-label {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  /* Add other styling to make it look like a button */
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  color: #495057;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.custom-file-upload-label:hover {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
 
 .add-btn:hover, .add-btn:focus {
   background-color: #0056b3; /* Darker blue on hover/focus for feedback */

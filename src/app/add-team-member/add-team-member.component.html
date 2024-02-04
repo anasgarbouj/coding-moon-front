@@ -2,26 +2,30 @@
   <h1>CODING MOON CHALLENGE</h1>
   <p>Manage YOUR TEAM</p>
 
-  <button type="button" class="btn add-member-btn" (click)="toggleTeamMemberForm()">+ Add Team Member</button>
+  <button type="button" class="btn add-member-btn" (click)="toggleTeamMemberForm()">{{ toggleButtonText }}</button>
 
   <!-- Team Member Form -->
   <div class="team-member-form" *ngIf="showTeamMemberForm">
     <form #teamMemberForm="ngForm">
       <!-- First Name -->
-      <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="newMember.firstname" name="firstName" placeholder="Your First Name" required #firstName="ngModel">
-        <div *ngIf="firstName.invalid && firstName.touched" class="error-message">
-          First name is required.
-        </div>
-      </div>
+  <!-- First Name -->
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="newMember.firstname" name="firstName" placeholder="Your First Name" 
+         required pattern="[A-Za-z ]+" #firstName="ngModel">
+  <div *ngIf="firstName.invalid && firstName.touched" class="error-message">
+    First name must contain only letters and spaces.
+  </div>
+</div>
 
-      <!-- Last Name -->
-      <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="newMember.lastname" name="lastName" placeholder="Your Last Name" required #lastName="ngModel">
-        <div *ngIf="lastName.invalid && lastName.touched" class="error-message">
-          Last name is required.
-        </div>
-      </div>
+<!-- Last Name -->
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="newMember.lastname" name="lastName" placeholder="Your Last Name" 
+         required pattern="[A-Za-z ]+" #lastName="ngModel">
+  <div *ngIf="lastName.invalid && lastName.touched" class="error-message">
+    Last name must contain only letters and spaces.
+  </div>
+</div>
+
 
       <div class="form-group">
         <input type="email" class="form-control" [(ngModel)]="newMember.email" name="email" placeholder="Your Email Address" required #email="ngModel">
@@ -57,10 +61,18 @@
       </div>
 >
     <!-- File Upload for CV -->
-<div class="form-group">
-  <input type="file" class="form-control" (change)="onFileSelect($event)" required>
-  <span class="placeholder">Upload CV</span>
+  <!-- Custom File Input Wrapper -->
+<div class="form-group custom-file-upload">
+  <label for="file-upload" class="custom-file-upload-label">
+    <i class="fa fa-cloud-upload"></i> Upload CV
+  </label>
+  <input id="file-upload" type="file" (change)="onFileSelect($event)" style="display: none;" />
+  <div *ngIf="errorMessage" class="error-message" style="color: red;">
+    {{ errorMessage }}
+  </div>
 </div>
+
+    
 
 
       <!-- Error Message -->
