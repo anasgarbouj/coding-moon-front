@@ -22,14 +22,14 @@ export class UserService {
     try {
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(token);
-      console.log("decode: ", decodedToken);
+     
       const exp = decodedToken.exp; // Get the expiration time from the token
   
       if (!exp) return false;
   
       return (Date.now() >= exp * 1000); // Compare the expiration time with the current time
     } catch (error) {
-      console.error('Error decoding token:', error);
+     
       return true;
     }
   }
@@ -87,7 +87,7 @@ forgotPassword(email: string): Observable<any> {
           return { message: 'Request sent successfully' };
         }
         // If parsing fails and no success message, log the error and return the original response text
-        console.error('Error parsing response:', error);
+      
         return responseText;
       }
     }),
@@ -96,6 +96,17 @@ forgotPassword(email: string): Observable<any> {
       return throwError(error);
     })
   );
+}
+deleteLeader(): Observable<any> {
+  // Assuming the endpoint to delete a leader does not require any additional
+  // path parameters or body payload, and it uses the JWT token for authorization
+  return this.http.delete(`${this.apiUrl}/api/auth/jwt/leader`, { headers: this.getHeaders() })
+    .pipe(
+      catchError(error => {
+        // Handle any HTTP errors here
+        return throwError(error);
+      })
+    );
 }
 
 
@@ -130,7 +141,7 @@ forgotPassword(email: string): Observable<any> {
             return JSON.parse(responseText);
           } catch (error) {
             // If parsing fails, log the error and return the original response text
-            console.error('Error parsing response:', error);
+          
             return responseText;
           }
         }),
@@ -200,7 +211,7 @@ getTeamLogo(): Observable<LogoResponse> {
     responseType: 'json' // This tells HttpClient to parse the response as JSON
   }).pipe(
     catchError(error => {
-      console.error('Error fetching team logo:', error);
+   
       return throwError(error);
     })
   );
@@ -261,7 +272,7 @@ getTeamLogo(): Observable<LogoResponse> {
           return JSON.parse(responseText);
         } catch (error) {
           // If parsing fails, log the error and return the original response text
-          console.error('Error parsing response:', error);
+         
           return responseText;
         }
       }),
@@ -290,7 +301,7 @@ getTeamLogo(): Observable<LogoResponse> {
           try {
             return JSON.parse(responseText);
           } catch (error) {
-            console.error('Error parsing response:', error);
+           
             return responseText;
           }
         }),
@@ -319,7 +330,7 @@ getTeamLogo(): Observable<LogoResponse> {
           try {
             return JSON.parse(responseText);
           } catch (error) {
-            console.error('Error parsing response:', error);
+            
             return responseText;
           }
         }),

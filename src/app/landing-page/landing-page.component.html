@@ -68,6 +68,8 @@
                             <span class="dropdown-arrow" >↓</span>
                             <div #dropdownMenu class="dropdown-content" [hidden]="!showOptions">
                                 <div (click)="handleUserOption('logout')">Logout</div>
+                                <div (click)="handleUserOption('delete')">delete your account</div>
+
                             </div>
                         </div>
                     </div>
@@ -97,7 +99,7 @@
                 <p>Participant</p>
             </div>
             <div class="container-item">
-                <div class="item" data-target="10">0</div>
+                <div class="item" data-target="8">0</div>
                 <p>Workshops</p>
             </div>
     </div>
@@ -117,7 +119,7 @@
             <a href="#" class="btn" onclick="redirectToCreateTeam()">Register Now</a>
         </div>
         <div class="img">
-            <img src="assets/images/aboutEvent.png" alt="">
+            <img src="assets/event.png" alt="">
         </div>
     </section>
 
@@ -176,12 +178,16 @@
                  the day. And of course, the highlight of the night – the big reveal of the challenge! <br /> <br/>
 
                 So, gear up, get excited, and let's make this hackathon an unforgettable adventure! See you there!</p>
-            <div class="date">
-                <i class="ri-calendar-line"></i> 17/18 February 2024
-            </div>
-            <div class="location">
-                <i class="ri-map-pin-line"></i> EPI Sousse
-            </div>
+                <div class="date">
+                    <i class="ri-calendar-line"></i> 17/18 February 2024
+                </div>
+                <div class="location">
+                    <i class="ri-map-pin-line"></i> EPI Sousse
+                </div>
+                <div class="fees">
+                    <i class="ri-money-dollar-circle-line"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15DT/PS
+                </div>
+                
         </div>
         <div class="planning___container">
             <div class="buttons__container">
@@ -392,7 +398,7 @@
             <p><a href="#AboutUs">About Us</a></p>
             <p><a href="#JoinUs">Our Event</a></p>
             <p><a href="#agents">Agent</a></p>
-            <p><a href="#sponsors">Sponsors</a></p>
+         <!--   <p><a href="#sponsors">Sponsors</a></p>-->
           </div>
           <div class="social-media">
             <h4>Social</h4>

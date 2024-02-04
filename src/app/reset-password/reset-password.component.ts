@@ -30,7 +30,6 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        console.log("Time's up. Redirecting to sign-in.");
         this.router.navigate(['/sign-in']);
       }
     }, 1000);
@@ -51,12 +50,10 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     if (this.newPassword === this.confirmPassword) {
       this.userService.resetPassword(this.newPassword, this.confirmPassword, this.token).subscribe({
         next: (response) => {
-          console.log('Password has been reset successfully');
           clearInterval(this.timeoutId); // Clear the timeout on successful password reset
           this.router.navigate(['/sign-in']);
         },
         error: (error) => {
-          console.error('Reset password error:', error);
         }
       });
     } else {

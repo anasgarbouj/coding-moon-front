@@ -20,7 +20,6 @@ email:string='';
       return;
     }
   
-    console.log('Verifying code:', this.verificationCode); // Log the code being verified
     this.userService.verifyEmailCode(this.verificationCode, this.email).subscribe({
       next: (response) => {
         // Handle successful verification
@@ -29,8 +28,6 @@ email:string='';
         this.router.navigate(['/sign-in']);
       },
       error: (error) => {
-        console.log('Verification code:', this.verificationCode);
-        console.error('Verification failed:', error); // Log more detailed error
         this.errorMessage = 'Verification failed. Please try again.';
       }
     });

@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy, Renderer2, ElementRef ,ViewEncapsulation,
 import { IUser } from '../user'; // Import your User model
 import { UserService } from '../user-service.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
-
+import { LeaderDialogComponent } from '../leader-dialog/leader-dialog.component';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -24,7 +25,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     // Add other properties as needed
   }; // Initialize an empty user object
   showOptions: boolean = false;
-  constructor(private renderer: Renderer2, private el: ElementRef , private userService:UserService,private router: Router // Add the router for navigation
+  constructor(private renderer: Renderer2, private el: ElementRef , private userService:UserService,private router: Router  , private dialog: MatDialog// Add the router for navigation
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +46,6 @@ getUserData() {
       this.user = response;
     },
     (error) => {
-      console.error('Error fetching user data', error);
     }
   );
 }
@@ -62,8 +62,8 @@ handleUserOption(option: string) {
       localStorage.removeItem('jwtToken'); // Remove the token
       this.router.navigate(['/']); // Navigate to login or home page
   }
-  if (option === 'manage'){
-    this.router.navigate(['/manage-account'])
+  if (option === 'delete'){
+    this.deleteUser();
   }
   // Add additional cases if needed for other options like 'manage'
   this.showOptions = false; // Hide the options after selection
@@ -74,5 +74,35 @@ handleUserOption(option: string) {
       this.script.remove();
     }
   }
+  deleteUser() {
+    const dialogRef = this.dialog.open(LeaderDialogComponent, {
+      width: '250px',
+      // You might want to pass data to your dialog here if needed
+    });
+  
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        // Proceed with deletion if the user confirmed
+        this.userService.deleteLeader().subscribe(
+          response => {
+            // Remove the token from local storage on successful deletion
+            localStorage.removeItem('jwtToken');
+  
+            // For example, navigate to the login or home page
+            this.router.navigate(['/']); // Adjust the route as needed
+            
+            // Here, you can add additional success handling
+          },  
+          error => {
+            // Here, you can add error handling
+          }
+        );
+      } else {
+        // Deletion cancelled, handle accordingly
+        // Here, you can add additional handling for cancellation
+      }
+    });
+  }
+  
   
 }

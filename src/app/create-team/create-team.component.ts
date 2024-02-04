@@ -45,7 +45,6 @@ export class CreateTeamComponent implements OnInit {
       response => {
         if (response && response.name) {
           this.isTeamNameDisabled = true; 
-          console.log(response);// Disable input if team exists
           this.teamId = response.id; // Assume the response contains an 'id' field
           if (response && response.squad_members) {
             this.fetchTeamMembers(response.squad_members);
@@ -55,7 +54,6 @@ export class CreateTeamComponent implements OnInit {
         // If no team, the user can create a new one, TeamName remains an empty string
       },
       error => {
-        console.error('Error fetching team:', error);
         // Handle error scenario, maybe set an error message to display
       }
     );
@@ -135,7 +133,6 @@ onFileSelect(event: Event): void {
         // Handle post-deletion logic
       },
       error => {
-        console.error('Error deleting team member:', error);
       }
     );
   }
@@ -161,7 +158,6 @@ onFileSelect(event: Event): void {
               },
               logoUploadError => {
                 // Handle logo upload error
-                console.error('Error uploading team logo:', logoUploadError);
                 // You can decide how to handle this, e.g., show an error message
               }
             );
@@ -172,7 +168,6 @@ onFileSelect(event: Event): void {
           }
         },
         error => {
-          console.error('Error creating team:', error);
           this.handleTeamCreationError(error);
         }
       );
@@ -186,18 +181,15 @@ onFileSelect(event: Event): void {
       this.userService.updateTeam(   this.TeamName ).subscribe(
         response => {
           // Handle the successful update, maybe show a success message
-          console.log('Team details updated successfully', response);
           this.openSuccessDialog();
 
         },
         error => {
           // Handle the error scenario
-          console.error('Error updating team details:', error);
         }
       );
     } else {
       // Handle the case where team name is empty or team ID is not available
-      console.error('Team name is required');
     }
   }
   teamLogoUrl: string = ''; // Property to hold the logo URL
@@ -209,16 +201,13 @@ onFileSelect(event: Event): void {
         const logoUrl = response.message;
         if (logoUrl) {
           this.teamLogoUrl = logoUrl;
-          console.log("Logo URL:", logoUrl);
 
 // For debugging purposes only
 this.teamLogoUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
         } else {
-          console.error('Logo URL is empty or undefined.');
         }
       },
       error => {
-        console.error('Failed to fetch team logo:', error);
       }
     );
   }
@@ -230,21 +219,17 @@ this.teamLogoUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
     if (this.teamLogoFile) {
       const formData = new FormData();
       formData.append('file', this.teamLogoFile);
-  console.log(this.teamLogoFile);
       // Assuming teamId is necessary to identify which team's logo to update
       this.userService.updateTeamLogo(formData).subscribe(
         response => {
           // Handle successful logo update
-          console.log('Team logo updated successfully', response);
           this.openSuccessDialog();
         },
         error => {
           // Handle error scenario
-          console.error('Error updating team logo:', error);
         }
       );
     } else {
-      console.error('A logo file must be selected');
     }
   }
   confirmTeamOrSaveChanges(): void {
@@ -296,12 +281,11 @@ addmember() {
             this.userService.uploadImage(formData).subscribe(
               logoUploadResponse => {
                 // Handle successful logo upload
-                this.openSuccessDialog();
+               
                 this.router.navigate(['/add-member']);
               },
               logoUploadError => {
                 // Handle logo upload error
-                console.error('Error uploading team logo:', logoUploadError);
                 // You can decide how to handle this, e.g., show an error message
               }
             );
@@ -312,7 +296,6 @@ addmember() {
           }
         },
         error => {
-          console.error('Error creating team:', error);
           this.handleTeamCreationError(error);
         }
       );
@@ -335,17 +318,14 @@ addmember() {
           response => {
             this.router.navigate(['/**']);
             // For example, you might navigate away or show a success message
-            console.log('Team successfully deleted');
             // ... additional success handling ...
           },
           error => {
-            console.error('Error deleting team:', error);
             // Handle the error scenario, such as displaying an error message
           }
         );
       } else {
         // Deletion cancelled, handle accordingly
-        console.log('Deletion cancelled');
         // ... additional handling for cancellation ...
       }
     });

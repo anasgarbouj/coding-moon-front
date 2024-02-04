@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { LeaderDialogComponent } from './leader-dialog/leader-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { AuthInterceptor } from './auth.interceptor';
     SpinnerComponent,
     ConfirmDialogComponent,
     SuccessDialogComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    LeaderDialogComponent
   ],
   imports: [
     BrowserModule,

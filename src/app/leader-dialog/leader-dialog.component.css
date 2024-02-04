@@ -1,0 +1,38 @@
+/* Dialog Title */
+mat-dialog-title {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: #006BE2; /* Set a color that matches your app's theme */
+    text-align: center; /* Center-align the title */
+    margin-bottom: 15px; /* Add some space below the title */
+  }
+  
+  /* Dialog Content */
+  mat-dialog-content {
+    font-size: 16px; /* Adjust the font size for the content */
+    color: #333; /* Set a readable color for the text */
+    margin-bottom: 20px; /* Space below the content before the actions */
+  }
+  
+  /* Dialog Actions */
+  mat-dialog-actions {
+    justify-content: center; /* Center-align the actions/buttons */
+    padding: 20px 0; /* Add padding above and below the actions for spacing */
+  }
+  
+  /* Dialog Button */
+  button[mat-button] {
+    background-color: #006BE2; /* Use a color that matches your theme */
+    color: #FFFFFF; /* Contrast color for the button text */
+    font-weight: bold; /* Make the button text bold */
+    border-radius: 20px; /* Rounded corners for the button */
+    padding: 10px 30px; /* Padding inside the button */
+    margin-top: 10px; /* Extra space above the button if needed */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Optional: Add a subtle shadow for depth */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+  }
+  
+  button[mat-button]:hover {
+    background-color: #006BE2; /* Darker shade on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Larger shadow on hover for a "lifting" effect */
+  }
+  

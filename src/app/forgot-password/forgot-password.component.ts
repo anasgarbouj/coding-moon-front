@@ -21,13 +21,11 @@ export class ForgotPasswordComponent implements OnInit {
       // Call the forgotPassword service method
       this.userService.forgotPassword(this.email).subscribe(
         response => {
-          console.log('Password reset email sent to:', this.email);
           // Navigate to a confirmation page or show a success message
           this.router.navigate(['/password-reset-confirmation']);
         },
         error => {
           // Handle the error case
-          console.error('Error during password reset:', error);
           this.errorMessage = error.error.message || 'An error occurred while sending the reset link.';
         }
       );

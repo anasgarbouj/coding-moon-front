@@ -60,8 +60,8 @@ export class AddTeamMemberComponent implements OnInit {
       }
   
       // Check if the file size is less than or equal to 200 KB
-      if (file.size > 200 * 1024) {
-        this.errorMessage = 'The file size should not exceed 200 KB.';
+      if (file.size > 500 * 1024) {
+        this.errorMessage = 'The file size should not exceed 500 KB.';
         return; // Exit the function if file exceeds size limit
       }
   
@@ -77,7 +77,7 @@ export class AddTeamMemberComponent implements OnInit {
         // File uploaded successfully, now add team member
         this.addMember();
       } catch (error) {
-        console.error('Error uploading CV:', error);
+    
         this.errorMessage = 'Failed to upload CV. Please try again.';
       }
     } else {
@@ -95,7 +95,7 @@ export class AddTeamMemberComponent implements OnInit {
           this.router.navigate(['/create-team']);
         },
         error => {
-          console.error('Error adding team member:', error);
+        
           this.errorMessage = error.error.message || 'Error adding team member';
         }
       );

@@ -36,8 +36,8 @@ onFileSelect(event: Event): void {
     const file = eventTarget.files[0];
 
     // Check if the file size exceeds 200KB (200 * 1024 bytes)
-    if (file.size > 200 * 1024) {
-      this.errorMessage = 'The CV must be less than 200KB.';
+    if (file.size > 500 * 1024) {
+      this.errorMessage = 'The CV must be less than 500KB.';
       return;
     }
 
@@ -102,7 +102,7 @@ onFileSelect(event: Event): void {
           // Handle CV upload response if necessary
         } catch (error) {
           this.errorMessage = 'Failed to upload CV. Please try again.';
-          console.error(error);
+       
           return;
         }
       }
@@ -112,7 +112,7 @@ onFileSelect(event: Event): void {
     } catch (error) {
       // Handle registration or CV upload error
       this.errorMessage = 'Failed to register user or upload CV. Please try again.';
-      console.error(error);
+  
     }
   }
   
