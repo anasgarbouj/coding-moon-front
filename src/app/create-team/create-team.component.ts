@@ -262,6 +262,11 @@ this.teamLogoUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
 
  
 addmember() {
+  if (this.teamMembers.length >= 5) {
+    this.confirmTeamErrorMessage = 'Cannot add more than 5 team members.';
+    // Optionally, prevent navigation or further action here
+    return; // Exit the method to prevent adding more members
+  }
   // Check if team already exists
   if (this.isTeamNameDisabled) {
     // Navigate to add-member page without creating a new team

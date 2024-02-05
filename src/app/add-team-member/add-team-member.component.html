@@ -27,12 +27,15 @@
 </div>
 
 
-      <div class="form-group">
-        <input type="email" class="form-control" [(ngModel)]="newMember.email" name="email" placeholder="Your Email Address" required #email="ngModel">
-        <div *ngIf="email.invalid && email.touched" class="error-message">
-          A valid email is required.
-        </div>
-      </div>
+    <!-- Email -->
+<div class="form-group">
+  <input type="email" class="form-control" [(ngModel)]="newMember.email" name="email" placeholder="Your Email Address"
+         required pattern="[^@]+@[^\.]+\..+" #email="ngModel">
+  <div *ngIf="email.invalid && email.touched" class="error-message">
+    A valid email containing "@" and "." is required.
+  </div>
+</div>
+
       
       <!-- Phone Number -->
       <div class="form-group">
